@@ -13,7 +13,7 @@ public class FXMLLoaderProducer {
     @Produces
     public FXMLLoader createLoader() {
         FXMLLoader loader = new FXMLLoader();
-        loader.setControllerFactory(param -> this.instance.select(param).get());
+        loader.setControllerFactory(param ->  this.instance.select(param).get());
         loader.setClassLoader(Thread.currentThread().getContextClassLoader());
         return loader;
     }

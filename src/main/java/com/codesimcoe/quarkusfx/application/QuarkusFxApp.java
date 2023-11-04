@@ -15,13 +15,17 @@ public class QuarkusFxApp {
 	@Inject
 	FXMLLoader fxmlLoader;
 
-	public void start(@Observes @StartupScene Stage stage) {
+	public void start(@Observes @PrimaryStage Stage stage) {
 
 		try {
 			URL fxml = this.getClass().getResource("/app.fxml");
 			Parent fxmlParent = this.fxmlLoader.load(fxml.openStream());
-			stage.setScene(new Scene(fxmlParent, 800, 600));
+
+			Scene scene = new Scene(fxmlParent, 800, 600);
+//			scene.getStylesheets().add(QuarkusFxApp.class.getResource("/hiberbee.css").toExternalForm());
+			stage.setScene(scene);
 			stage.setTitle("Hello World Quarkus and JavaFX!");
+//			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();

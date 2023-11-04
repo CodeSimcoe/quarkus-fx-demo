@@ -13,7 +13,7 @@ public class FxApplication extends Application {
     CDI.current()
       .getBeanManager()
       .getEvent()
-      .select(new AnnotationLiteral<StartupScene>() {})
+      .select(new AnnotationLiteral<PrimaryStage>() {})
       .fire(primaryStage);
   }
 

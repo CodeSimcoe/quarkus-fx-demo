@@ -15,6 +15,8 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -60,6 +62,7 @@ public class AppController {
 
     // Alpha acids are stored as a float, but we want to display them as a percentage.
     this.alphaAcidsColumn.setCellFactory(column -> new TableCell<>() {
+
       @Override
       protected void updateItem(final Float item, final boolean empty) {
         super.updateItem(item, empty);
@@ -67,15 +70,20 @@ public class AppController {
       }
     });
 
+    this.countryColumn.setCellFactory(TableCellFactories.newCountryTableCellFactory());
+
     this.deleteColumn.setCellFactory(column -> new TableCell<>() {
 
-      private final Button button = new Button("Delete");
+      private static final Image IMAGE = new Image("images/delete-24.png");
+      private final ImageView imageView = new ImageView(IMAGE);
+      private final Button button = new Button("", this.imageView);
 
       {
         this.button.setOnAction(event -> {
           Hop hop = this.getTableView().getItems().get(this.getIndex());
           AppController.this.deleteData(hop);
         });
+        this.button.setStyle("-fx-padding: 2");
       }
 
       @Override
